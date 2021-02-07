@@ -16,10 +16,10 @@ test('user can fill out and submit form', async () => {
 
   //2. add text to fields
   fireEvent.change(firstNameInput, {
-    target: { value: 'moe', name: 'firstName' },
+    target: { value: 'Shane', name: 'firstName' },
   });
   fireEvent.change(lastNameInput, {
-    target: { value: 'Jackson', name: 'lastName' },
+    target: { value: 'Slone', name: 'lastName' },
   });
   fireEvent.change(emailInput, {
     target: { value: 'slone.shane@gmail.com', name: 'email' },
@@ -30,7 +30,10 @@ test('user can fill out and submit form', async () => {
   const button = screen.getByRole('button');
   fireEvent.click(button);
 
-  expect(await screen.findByText(/moe/i)).toBeInTheDocument();
+  const displayedMessage = await screen.findByText(/slone.shane@gmail.com/i);
+
+  expect(displayedMessage).toBeTruthy();
+  expect(displayedMessage).toBeInTheDocument();
 
   //3. access and click submit button
 });
